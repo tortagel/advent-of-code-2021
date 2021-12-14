@@ -21,9 +21,9 @@ def apply_steps(template, rules, steps):
     for k in pairs:
         counter[k[0]] = counter.get(k[0], 0) + pairs[k]
         counter[k[1]] = counter.get(k[1], 0) + pairs[k]
-    counts = list(counter.values())
+    counts = [n // 2 + (1 if template[0] == k or template[-1] == k else 0) for k, n in counter.items()]
     counts.sort()
-    return ceil(counts[-1]/2) - ceil(counts[0]/2)
+    return counts[-1] - counts[0]
 
 def solve_part1(puzzle):
     return apply_steps(puzzle[0], puzzle[1], 10)
