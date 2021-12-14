@@ -13,7 +13,7 @@ def insert_pairs(pairs, rules):
             new_pairs[k] = pairs[k]
     return new_pairs
 
-def abc(template, rules, steps):
+def apply_steps(template, rules, steps):
     pairs = {template[i:i+2]: 1 for i in range(len(template)-1)}
     for _ in range(steps):
         pairs = insert_pairs(pairs, rules)
@@ -26,7 +26,7 @@ def abc(template, rules, steps):
     return ceil(counts[-1]/2) - ceil(counts[0]/2)
 
 def solve_part1(puzzle):
-    return abc(puzzle[0], puzzle[1], 10)
+    return apply_steps(puzzle[0], puzzle[1], 10)
 
 def solve_part2(puzzle):
-    return abc(puzzle[0], puzzle[1], 40)
+    return apply_steps(puzzle[0], puzzle[1], 40)
